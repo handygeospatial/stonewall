@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <title>CSS Stonewall</title>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel='stylesheet'
+    href='http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css'/>
+  <style>#map{position: absolute; top: 0; bottom: 0; width: 100%;}</style>
+</head>
+<body>
+  <div id='map'/>
+  <script src='http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js'></script>
+  <script src='http://handygeospatial.github.io/mapsites/js/leaflet-hash.js'></script>
+  <script></script><!-- jQuery 2.1.1 -->
+  <script src='./Leaflet.MapboxVectorTile.min.js'></script><!-- https://github.com/SpatialServer/Leaflet.MapboxVectorTile/blob/master/LICENSE -->
+  <script>
+    var map = L.map('map').setView([35.6591, 139.7633], 16);
+    L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png').
+      addTo(map);
+    var mvt = new L.TileLayer.MVTSource({
+      url: 'http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mapbox'
+    });
+    map.addLayer(mvt);
+    var hash = L.hash(map);
+  </script>
+</body>
+</html>
