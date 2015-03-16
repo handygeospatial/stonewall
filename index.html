@@ -12,16 +12,39 @@
   <div id='map'/>
   <script src='http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js'></script>
   <script src='http://handygeospatial.github.io/mapsites/js/leaflet-hash.js'></script>
-  <script></script><!-- jQuery 2.1.1 -->
+  <script src='./TileLayer.Grayscale.js'></script>
   <script src='./Leaflet.MapboxVectorTile.min.js'></script><!-- https://github.com/SpatialServer/Leaflet.MapboxVectorTile/blob/master/LICENSE -->
   <script>
-    var map = L.map('map').setView([35.6591, 139.7633], 16);
-    L.tileLayer('http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png').
-      addTo(map);
+    var map = L.map('map').setView([39.6205, 141.9773], 13);
+    var std = L.tileLayer.grayscale(
+      'http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png',
+      {opacity: 0.5});
     var mvt = new L.TileLayer.MVTSource({
-      url: 'http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mapbox'
+      url: 'http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mapbox',
+      style: function(feature) {
+        var style = {};
+        switch(feature.type) {
+          case 1:
+            style = {color: 'rgba(49,79,79,1)', radius: 5,
+              selected: {color: 'rgba(255,255,0,0.5)', radius: 6}};
+            break;
+          case 2:
+            style = {color: 'rgba(161,217,155,0.8)', size: 3,
+              selected: {color: 'rgba(255,25,0,0.5)', size: 4}};
+            break;
+          case 3:
+            style = {color: 'rgba(149,139,255,0.4)',
+              outline: {color: 'rgb(20,20,20)', size: 1},
+              selected: {color: 'rgba(255,140,0,0.3)',
+                outline: {color: 'rgba(255,140,0,1)', size: 2}}};
+            break;
+        }
+        return style;
+      }
     });
+    map.addLayer(std);
     map.addLayer(mvt);
+    L.control.layers({}, {'std': std, 'mvt': mvt}).addTo(map);
     var hash = L.hash(map);
   </script>
 </body>
