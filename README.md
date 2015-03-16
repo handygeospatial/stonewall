@@ -1,5 +1,6 @@
 # stonewall
-An attempt to import good parts from North America - Leaflet.MapboxVectorTile and tippercanoe - 
+An attempt to import good parts from North America 
+http://handygeospatial.github.io/stonewall 
 
 ## Name
 The name of the repository came from CSS Stonewall. See also http://en.wikipedia.org/wiki/Japanese_ironclad_Kōtetsu . 
