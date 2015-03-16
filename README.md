@@ -1,5 +1,5 @@
 # stonewall
-An attempt to import good parts from North America - Leaflet.MapboxVectorTile and tipper canoe - 
+An attempt to import good parts from North America - Leaflet.MapboxVectorTile and tippercanoe - 
 
 ## See also
 - Leaflet.MapboxVectorTile 
